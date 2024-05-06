@@ -4,7 +4,7 @@ import Student_Signup from "./Student_Signup";
 // import Faculty_Signup from "./Faculty_Signup";
 import Faculty_Login from "./Faculty_Login";
 import { useState } from "react";
-import Photo from "../assests/photo.png";
+import Photo from "../assests/login_signup.png";
 
 const Template = ({ title, formType, setIsLoggedIn }) => {
   const [accountType, setAccountType] = useState("student");
