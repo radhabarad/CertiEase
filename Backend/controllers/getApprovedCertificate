@@ -1,0 +1,80 @@
+const Certificate = require("../model/CertificateSchema")
+const fs = require('fs');
+
+exports.getAllApprovedCertificate = async (req,res)=>{
+    try{
+        console.log("hello");
+        const {enrollmentNo} = req.body;
+        console.log(enrollmentNo);
+        
+        const allCertificate = await Certificate.find({
+            enrollmentNo : enrollmentNo
+        })
+        // console.log(typeof(allCerti));
+        // if(allCerti.length == 0){
+        //     res.send(404).json({
+        //         // success:false,
+        //         message:"no approves certificates"
+        //     })
+        // };
+        res.status(200).json({
+            success:true,
+            allCertificate : allCertificate
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            success:false,
+            message:"Internal error while fetching list of certificates"
+        })
+    }
+}
+
+exports.getPerticularApprovedCertificate = async (req, res) => {
+    try {
+        const { enrollmentNo, certificateName } = req.body;
+        console.log({ enrollmentNo, certificateName });
+
+        if (!enrollmentNo || !certificateName) {
+            return res.status(400).json({
+                success: false,
+                message: "Enrollment number and certificate name are required."
+            });
+        }
+
+        const approvedCertificate = await Certificate.find({
+            enrollmentNo: enrollmentNo,
+            certificateName: certificateName,
+        });
+
+        if (approvedCertificate.length === 1) {
+            const fileName = `${enrollmentNo}_${certificateName}.pdf`;
+            const filePath = `./documents/${fileName}`;
+
+            if (!fs.existsSync(filePath)) {
+                return res.status(404).send('File not found.');
+            }
+
+            res.setHeader('Content-Disposition', 'attachment; filename=' + fileName);
+            res.setHeader('Content-Type', 'application/octet-stream');
+
+            res.download(filePath, fileName, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Failed to download PDF file.');
+                }
+            });
+        } else {
+            res.status(404).json({
+                success: false,
+                message: "Particular file not found or not approved."
+            });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Internal error while fetching particular approved certificates."
+        });
+    }
+}
