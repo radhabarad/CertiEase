@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Certificate</title>
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Source+Code+Pro:wght@300&display=swap');
+
+      body {
+      font-family: "Fira Sans", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      margin: 0; 
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+  
+    #certificate {
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0 auto;
+    padding: 2cm;
+    position: relative;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+  
+    .student-photo {
+      position: absolute;
+      top: 2cm;
+      left: 2cm;
+      width: 5cm;
+      height: 5cm;
+      border: 1px solid black;
+      border-radius: 5px;
+    }
+  
+    .college-details {
+      position: absolute;
+      top: 2cm;
+      right: 2cm;
+      width: 7cm;
+      text-align: left;
+      font-size: 1.08em;
+    }
+  
+    .certificate-heading {
+      text-align: center;
+      font-size: 1.5em;
+      margin-top: 7cm;
+    }
+  
+    .certificate-text  {
+      display: block;
+      justify-content: center;
+      text-align: justify;
+      font-size: 20px;
+      line-height: 2.5;
+      margin-top: 1cm;
+    
+    }
+  
+    .college-logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust as necessary */
+    height: 300px; /* Adjust as necessary */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.college-logo {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0.1;
+}
+  
+    .signature {
+      position: absolute;
+      bottom: 8cm;
+      right: 2cm;
+      text-align: center;
+      width: 5cm;
+    }
+    .seal{
+      position: absolute;
+      bottom: 5cm;
+      right: 7cm;
+      text-align: center;
+      width: 5cm;
+    }
+    .sealimg{
+        position: relative;
+        height: 2cm;
+        width: 3cm;
+        right: -1cm;
+        bottom:-.5cm;
+        /* bottom: cm;
+        right: 2cm; */
+        border: 2px solid rgb(39, 25, 25);
+        border-radius: 50%;
+    }
+  
+    .signature p {
+      margin: 0;
+      font-size: 1.3em;
+    }
+    .seal p{
+        margin: 0;
+      font-size: 1.3em;
+    }
+  
+.signature img {
+    width: 3cm;
+    height: 2cm;
+}
+.seal img{
+    width: 3cm;
+      height: 2cm;
+}
+    .fill-in-line{
+      width: 250px;
+      display: inline;
+
+    }
+    .c-text{
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="certificate">
+    <img id="student-photo" alt="Student Photo" class="student-photo" src="http://localhost:3000/images/{{enrollmentNo}}_image.{{fileType}}">
+
+    <div class="college-details">
+      <p>Office of the Principal,</p>
+      <p>Government Engineering College,</p>
+      <p>Vidyanagar,</p>
+      <p>Bhavnagar-364001</p>
+      <p>Date:{{date}}</p>
+    </div>
+    <h1 class="certificate-heading"><u>CHARACTER CERTIFICATE</u></h1>
+    <div class="certificate-text">
+      <p>This is to certify that Shri / Kumari : <span class="fill-in-line"><u>{{name}}</u></span> Enrollment No.: <span class="fill-in-line"><u>{{enrollmentNo}}</u></span> is/was a bonafied student of B.E. semester <span class="fill-in-line"><u>{{sem}}</u></span> in the <span class="fill-in-line"><u>{{branch}}</u></span> during the acedamic year<span class="fill-in-line"><u>{{year}}</u></span>
+    </div>
+    <div class="c-text">
+    <p>The institute is affiliated to Gujarat Technological University, Chandkheda, Ahmedabad</p>
+    <h4>To best of my knowledge and belief, he /she is bearing good moral character 
+        during his/ her stay at the institute.</h4>
+  </div>
+      <!-- Your existing certificate content -->
+      <div class="college-logo-container">
+          <img src="https://yt3.googleusercontent.com/ytc/AL5GRJXLDdSKsxb6-Adz5rWv7h6q_JGqLNcoFVscAbtC=s900-c-k-c0x00ffffff-no-rj" alt="College Logo" class="college-logo">
+      </div>
+    <!-- <div class="seal">
+        <p>Institute Seal</p>
+        <div class="sealimg"></div>
+    </div> -->
+    <div class="signature">
+      <p>Principal Signature</p>
+      <!-- <img src=""> -->
+    </div>
+  </div>
+</body>
+</html>
